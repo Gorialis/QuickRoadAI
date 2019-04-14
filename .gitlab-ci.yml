@@ -1,0 +1,35 @@
+
+image: archlinux/base
+
+stages:
+  - distribution
+
+make_dist:
+  stage: distribution
+  before_script:
+    # install deps
+    - pacman --noconfirm -Syu
+    - pacman --noconfirm -S bash git tar zip
+    # set git versions
+    - export GIT_REV_COUNT="$(git rev-list --count HEAD)"
+    - export GIT_REV_HASH="$(git rev-parse --short HEAD)"
+    - export GIT_VERSION="${GIT_REV_COUNT}+${GIT_REV_HASH}"
+    - export DIST_DATE="$(date +'%Y-%m-%d')"
+  script:
+    - sed -i "s/\/\* VERSION SPEC \*\/ 0 \/\* END VERSION SPEC \*\//${GIT_REV_COUNT}/g" QuickRoadAI/info.nut
+    - sed -i "s/\/\* DATE SPEC \*\/ \"0000-00-00\" \/\* END DATE SPEC \*\//\"${DIST_DATE}\"/g" QuickRoadAI/info.nut
+    # move these files into distribution
+    - cp LICENSE QuickRoadAI/license.txt
+    - cp README.md QuickRoadAI/readme.md
+    # make distribution archives
+    - cd QuickRoadAI
+    - tar -cvf ../QuickRoadAI-${GIT_REV_COUNT}.tar ./*
+    - cd ..
+    - tar -cJf QuickRoadAI_${GIT_VERSION}.tar.xz QuickRoadAI-*.tar
+    - zip QuickRoadAI_${GIT_VERSION}.zip QuickRoadAI-*.tar
+  artifacts:
+    paths:
+      - QuickRoadAI-*.tar
+      - QuickRoadAI_*.tar.xz
+      - QuickRoadAI_*.zip
+    expire_in: 14 days
