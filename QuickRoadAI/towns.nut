@@ -69,10 +69,10 @@ class TownPlaceabilitySummary
 
         AILog.Info("[" + AITown.GetName(town) + " Station] Cargo production: " + station_tiles.Count());
 
-        if (station_tiles.Count() > 10) {
+        if (station_tiles.Count() > 8) {
             station_tiles.Valuate(AIBase.RandItem);
             station_tiles.Sort(AIList.SORT_BY_VALUE, AIList.SORT_DESCENDING);
-            station_tiles.KeepTop(10);
+            station_tiles.KeepTop(8);
         }
 
         // Find all tiles we can put a depot on

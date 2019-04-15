@@ -39,9 +39,9 @@ function QuickRoadAI::IsTownMoneyAdequate() {
     local station_cost = AIRoad.GetBuildCost(AIRoad.ROADTYPE_ROAD, AIRoad.BT_BUS_STOP);
 
     local station_set_cost = station_cost + (2 * engine_cost);
-    local town_cost = depot_cost + (10 * station_set_cost);
+    local town_cost = depot_cost + (8 * station_set_cost);
 
-    return GetAcquireableBalance() > (4 * town_cost);
+    return GetAcquireableBalance() > (2 * town_cost);
 }
 
 function QuickRoadAI::ScanLargestTowns() {
