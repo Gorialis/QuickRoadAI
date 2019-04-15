@@ -99,7 +99,7 @@ function QuickRoadAI::ScanLargestTowns() {
 
                     local vehicles = [];
 
-                    for (local vi = 0; vi < summary.station_ops.len() * 2; vi++) {
+                    for (local vi = 0; vi < summary.station_ops.len(); vi++) {
                         AcquireBalance(AIEngine.GetPrice(engine));
 
                         local vehicle = AIVehicle.BuildVehicle(depotTile, engine);
