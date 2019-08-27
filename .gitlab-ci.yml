@@ -20,7 +20,7 @@ make_dist:
     - sed -i "s/\/\* DATE SPEC \*\/ \"0000-00-00\" \/\* END DATE SPEC \*\//\"${DIST_DATE}\"/g" QuickRoadAI/info.nut
     # move these files into distribution
     - cp LICENSE QuickRoadAI/license.txt
-    - cp README.md QuickRoadAI/readme.md
+    - cp README.rst QuickRoadAI/readme.rst
     # make distribution archives
     - cd QuickRoadAI
     - tar -cvf ../QuickRoadAI-${GIT_REV_COUNT}.tar ./*
