@@ -32,4 +32,4 @@ make_dist:
       - QuickRoadAI-*.tar
       - QuickRoadAI_*.tar.xz
       - QuickRoadAI_*.zip
-    expire_in: 14 days
+    expire_in: 6 months
